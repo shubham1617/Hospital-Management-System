@@ -1,0 +1,41 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "AppointmentServiceApplication",
+            "request": "launch",
+            "mainClass": "com.pm.appointmentservice.AppointmentServiceApplication",
+            "projectName": "demo-appointment-service"
+        },
+        {
+            "type": "java",
+            "name": "PatientServiceApplication",
+            "request": "launch",
+            "mainClass": "com.pm.patientservice.PatientServiceApplication",
+            "projectName": "patient-service"
+        },
+        {
+            "type": "java",
+            "name": "AppointmentService",
+            "request": "launch",
+            "mainClass": "com.pm.appointmentservice.AppointmentService"
+        },
+        {
+            "type": "java",
+            "name": "DoctorServiceApplication",
+            "request": "launch",
+            "mainClass": "com.pm.doctorservice.DoctorServiceApplication",
+            "projectName": "doctor-service"
+        },
+        {
+            "type": "java",
+            "name": "Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        }
+    ]
+}

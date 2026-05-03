@@ -1,0 +1,73 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.5.14'
+    id 'io.spring.dependency-management' version '1.1.7'
+}
+
+dependencyManagement {
+    imports {
+        mavenBom 'org.springframework.boot:spring-boot-dependencies:3.5.14'
+        mavenBom 'org.springframework.cloud:spring-cloud-dependencies:2025.0.1'
+    }
+}
+
+group = 'com.pm'
+version = '0.0.1-SNAPSHOT'
+description = 'doctor-service'
+
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // Spring Boot Dependencies
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa:3.5.14'
+    implementation 'org.springframework.boot:spring-boot-starter-validation:3.5.14'
+    implementation 'org.springframework.boot:spring-boot-starter-web:3.5.14'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    
+    // Lombok
+    compileOnly 'org.projectlombok:lombok:1.18.32'
+    annotationProcessor 'org.projectlombok:lombok:1.18.32'
+    
+    // Database
+    runtimeOnly 'com.mysql:mysql-connector-j:9.3.0'
+    
+    // API Documentation
+    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.1.0'
+
+    //Eureka Client Registration
+    implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
+
+
+    // Logging
+    implementation 'org.springframework.boot:spring-boot-starter-logging:3.5.14'
+    
+    // Testing
+    testImplementation('org.springframework.boot:spring-boot-starter-test:3.5.14')
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    
+    // H2 Database for testing
+    testImplementation 'com.h2database:h2'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
+
+compileJava {
+    options.compilerArgs.add('-parameters')
+}
