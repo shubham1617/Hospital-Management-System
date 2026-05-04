@@ -19,13 +19,14 @@ repositories {
 }
 
 ext {
-    set('springCloudVersion', "2025.1.1")
+    set('springCloudVersion', "2025.0.1")
 }
 
 dependencies {
     implementation 'org.springframework.cloud:spring-cloud-config-server'
     implementation 'org.springframework.cloud:spring-cloud-starter-config'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
 }

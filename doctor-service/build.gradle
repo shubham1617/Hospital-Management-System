@@ -38,6 +38,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-validation:3.5.14'
     implementation 'org.springframework.boot:spring-boot-starter-web:3.5.14'
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'org.springframework.cloud:spring-cloud-starter-config'
     
     // Lombok
     compileOnly 'org.projectlombok:lombok:1.18.32'

@@ -5,6 +5,7 @@ build/
 !**/src/main/**/build/
 !**/src/test/**/build/
 **/target/
+**/src/main/**/application-local.yml
 
 ### STS ###
 .apt_generated

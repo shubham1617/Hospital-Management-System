@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: doctor-service
+  config:
+    import: "optional:configserver:http://localhost:8888"
+
+  # Resource & Exception Mappings
+  mvc:
+    throw-exception-if-no-handler-found: true
+  web:
+    resources:
+      add-mappings: false
+
+server:
+  port: 8083
+  servlet:
+    context-path: /doctor-service
+
+# API Documentation (SpringDoc)
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    enabled: true

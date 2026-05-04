@@ -4,64 +4,61 @@ server:
 spring:
   application:
     name: api-gateway
+  config:
+    import: "optional:configserver:http://localhost:8888"
   cloud:
     gateway:
-#      globalcors:
-#        corsConfigurations:
-#          '[/**]':
-#            allowedOrigins: "*"
-#            allowedMethods: "*"
-#            allowedHeaders: "*"
-      routes:
-        - id: patient-service
-          #uri: http://localhost:8081
-          uri: lb://patient-service
-          predicates:
-            - Path=/api/v1/patient/**
+      server:
+        webflux:
+          routes:
+            - id: patient-service
+              uri: lb://patient-service
+              predicates:
+                - Path=/api/v1/patient/**
 
-        - id: doctor-service
-          uri: lb://doctor-service
-          predicates:
-            - Path=/doctor-service/api/v1/doctors/**
+            - id: doctor-service
+              uri: lb://doctor-service
+              predicates:
+                - Path=/doctor-service/api/v1/doctors/**
 
-        - id: billing-service
-          uri: lb://billing-service
-          predicates:
-            - Path=/api/v1/billing/**
+            - id: billing-service
+              uri: lb://billing-service
+              predicates:
+                - Path=/api/v1/billing/**
 
-        - id: appointment-service
-          uri: http://localhost:8084
-          predicates:
-            - Path=/api/v1/appointments/**
+            - id: appointment-service
+              uri: http://localhost:8084
+              predicates:
+                - Path=/api/v1/appointments/**
 
-management:
-  info:
-    env:
-      enabled: true
-  endpoints:
-    web:
-      exposure:
-        include: "info,health"
-
-# IMPORTANT: Ensure this is at the root level (not indented under 'management')
-info:
-  app:
-    name: ${spring.application.name}
-    description: Patient Management System
-    version: 1.0.0
-    status: "UP"
-
-eureka:
-  instance:
-    hostname: localhost
-    instance-id: ${spring.application.name}:${server.port}
-    lease-expiration-duration-in-seconds: 10
-    lease-renewal-interval-in-seconds: 5
-  client:
-    register-with-eureka: true
-    fetch-registry: true
-    eureka-server-connect-timeout-seconds: 5
-    service-url:
-      defaultZone: http://localhost:8761/eureka
-  server:
-    eviction-interval-timer-in-ms: 5000
+#management:
+#  info:
+#    env:
+#      enabled: true
+#  endpoints:
+#    web:
+#      exposure:
+#        include: "info,health"
+#
+## IMPORTANT: Ensure this is at the root level (not indented under 'management')
+#info:
+#  app:
+#    name: ${spring.application.name}
+#    description: Patient Management System
+#    version: 1.0.0
+#    status: "UP"
+#
+#eureka:
+#  instance:
+#    hostname: localhost
+#    instance-id: ${spring.application.name}:${server.port}
+#    lease-expiration-duration-in-seconds: 10
+#    lease-renewal-interval-in-seconds: 5
+#  client:
+#    register-with-eureka: true
+#    fetch-registry: true
+#    eureka-server-connect-timeout-seconds: 5
+#    service-url:
+#      defaultZone: http://localhost:8761/eureka
+#  server:
+#    eviction-interval-timer-in-ms: 5000
