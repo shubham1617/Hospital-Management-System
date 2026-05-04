@@ -1,5 +1,5 @@
 spring:
-   datasource:
+  datasource:
     url: jdbc:mysql://localhost:3306/patient_management
     username: root
     password: root
@@ -19,7 +19,3 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.MySQLDialect
       defer-datasource-initialization: true
-
-logging:
-  level:
-    root : info
