@@ -25,7 +25,7 @@ public class PatientService
     public PatientResponse getPatientById(String id)
     {
         Patient patient = patientRepo.findById(id)
-                .orElseThrow(() -> new RuntimeException("Patient not found"));
+                .orElseThrow(() -> new PatientNotFoundException("Patient not found"));
         PatientResponse patientResponse = PatientMapper.entityToResponse(patient);
         return patientResponse;
     }

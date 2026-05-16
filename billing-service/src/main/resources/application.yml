@@ -6,3 +6,17 @@ spring:
     name: billing-service
   config:
     import: "optional:configserver:http://localhost:8888"
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      patientBillingService:
+        registerHealthIndicator: true
+        slidingWindowSize: 10
+        minimumNumberOfCalls: 5
+        failureRateThreshold: 50
+        waitDurationInOpenState: 5000
+        permittedNumberOfCallsInHalfOpenState: 3
+        slidingWindowType: COUNT_BASED
+        ignoreExceptions:
+          - org.springframework.web.reactive.function.client.WebClientResponseException.NotFound
